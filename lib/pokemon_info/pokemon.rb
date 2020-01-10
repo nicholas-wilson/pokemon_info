@@ -3,8 +3,14 @@ class PokemonInfo::Pokemon
   @@all = []
 
   def initialize(name, types)
-    @name = name
     @number = @@all.size + 1
+    if @number == 29
+      @name = "nidoran-female"
+    elsif @number == 32
+      @name = "nidoran-male"
+    else
+      @name = name
+    end
     @types = types
 
     @@all << self
@@ -21,6 +27,7 @@ class PokemonInfo::Pokemon
   def self.create_from_pokemondb
     # use Pokemon.scrape_from_official_site to make pokemon
     PokemonInfo::Pokemon.scrape_from_pokemondb
+    PokemonInfo::Pokemon.add_details_to_all_pokemon
   end
 
   def self.scrape_from_pokemondb
@@ -38,13 +45,14 @@ class PokemonInfo::Pokemon
       end
       PokemonInfo::Pokemon.new(name, types)
     end
-      binding.pry
   end
 
   def self.add_details_to_all_pokemon
     # uses info link and returns extra info to make Pokemon
     @@all.each do |pokemon|
-      specs_page = Nokogiri::HTML(open("https://www.pokemon.com/us/pokedex/#{pokemon.name.downcase}"))
+      if pokemon.number < 810
+        specs_page = Nokogiri::HTML(open("https://www.pokemon.com/us/pokedex/#{pokemon.name.downcase}"))
+      end
     end
   end
 end
