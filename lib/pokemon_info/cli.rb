@@ -1,6 +1,7 @@
 class PokemonInfo::CLI
 
   def call
+    PokemonInfo::Pokemon.create_from_pokemondb
     input = ""
     until input.downcase == "exit"
       self.display_menu
@@ -48,7 +49,9 @@ class PokemonInfo::CLI
       elsif input == "7"
         self.list_gen(722, 809)
       elsif input == "8"
-        self.list_gen(1,809)
+        self.list_gen(810, 890)
+      elsif input == "9"
+        self.list_gen(1,890)
       else
         puts "Invalid input"
         input = "exit"
@@ -79,8 +82,8 @@ class PokemonInfo::CLI
     puts "5. All of Fifth Gen (494 - 649)"
     puts "6. All of Sixth Gen (650 - 721)"
     puts "7. All of Seventh Gen (722 - 809)"
-    puts "8. All Pokemon (not recommended as it is a lot of text)"
-    puts "*8th Generation Pokemon to be added later."
+    puts "8. All of Eighth Gen (810 - 890)"
+    puts "9. All Pokemon (not recommended as it is a lot of text)"
   end
 
   def list_gen(start_num, end_num)
