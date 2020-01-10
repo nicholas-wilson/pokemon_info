@@ -35,4 +35,15 @@ class PokemonInfo::CLI
     puts "Here's a list of all the Pokemon in Alphabetical order!"
     puts "---------------------------------------------------------------------"
   end
+
+  def list_by_number
+    puts "Here's a list of all the Pokemon in Numerical order!"
+    puts "---------------------------------------------------------------------"
+  end
+
+  def search_name
+    puts "Enter the name of the Pokemon to display info for"
+    input = gets.chomp
+    puts "Here's the info!"
+  end
 end
