@@ -20,7 +20,7 @@ class PokemonInfo::CLI
   end
 
   def display_menu
-    puts "Please choose one of the following options or type 'exit' to quit."
+    puts "\nPlease choose one of the following options or type 'exit' to quit."
     puts "---------------------------------------------------------------------"
     puts "1. List Pokemon by number"
     puts "2. Search by name"
@@ -30,7 +30,7 @@ class PokemonInfo::CLI
 
   def list_by_number
     input = ""
-    until input == ""
+    until input.downcase == "exit"
       display_gen_listing
       input = gets.chomp
       if input == "1"
@@ -47,27 +47,30 @@ class PokemonInfo::CLI
         self.list_gen(650, 721)
       elsif input == "7"
         self.list_gen(722, 809)
+      elsif input == "8"
+        self.list_gen(1,809)
       else
-        puts "Back to main menu."
+        puts "Invalid input"
+        input = "exit"
       end
     end
-
+    puts "Going back to main menu."
   end
 
   def search_name
-    puts "Enter the name of the Pokemon to display info for"
+    puts "\nEnter the name of the Pokemon to display info for"
     input = gets.chomp
     puts "Here's the info!"
   end
 
   def search_number
-    puts "Enter the number of the Pokemon to display info for"
+    puts "\nEnter the number of the Pokemon to display info for"
     input = gets.chomp
     puts "Here's the info!"
   end
 
   def display_gen_listing
-    puts "Please choose which group of Pokemon to be listed"
+    puts "\nPlease choose which group of Pokemon to be listed or type 'exit' for main menu"
     puts "---------------------------------------------------------------------"
     puts "1. All of First Gen (1 - 151)"
     puts "2. All of Second Gen (152 - 251)"
@@ -82,5 +85,6 @@ class PokemonInfo::CLI
 
   def list_gen(start_num, end_num)
     puts "Displaying #{start_num} to #{end_num}!"
+    self.search_name
   end
 end
