@@ -1,6 +1,2 @@
-require "pokemon_info/version"
-
-module PokemonInfo
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative "./pokemon_info/version"
+require_relative "./pokemon_info/cli"
