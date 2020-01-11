@@ -63,7 +63,7 @@ class PokemonInfo::Pokemon
         weaknesses_raw = specs_page.css("div.pokedex-pokemon-attributes.active div.dtm-weaknesses ul li")
         weaknesses = []
         weaknesses_raw.each do |weakness|
-          weaknesses << weakness.css("a span").text
+          weaknesses << weakness.css("a span").text.gsub(/\s+/, "")
         end
         pokemon.weaknesses = weaknesses
       end

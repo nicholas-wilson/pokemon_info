@@ -68,8 +68,8 @@ class PokemonInfo::CLI
 
   def search_number
     puts "\nEnter the number of the Pokemon to display info for"
-    input = gets.chomp
-    puts "Here's the info!"
+    input = gets.chomp.to_i
+    self.pull_info_by_number(input)
   end
 
   def display_gen_listing
@@ -82,12 +82,17 @@ class PokemonInfo::CLI
     puts "5. All of Fifth Gen (494 - 649)"
     puts "6. All of Sixth Gen (650 - 721)"
     puts "7. All of Seventh Gen (722 - 809)"
-    puts "8. All of Eighth Gen (810 - 890)"
+    puts "8. All of Eighth Gen (810 - 890) *doesn't include weaknesses or abilities yet"
     puts "9. All Pokemon (not recommended as it is a lot of text)"
   end
 
   def list_gen(start_num, end_num)
-    puts "Displaying #{start_num} to #{end_num}!"
+    puts "Displaying Pokemon! (#{start_num}-#{end_num})"
+    current_num = start_num
+    while current_num <= end_num
+      puts "#{current_num}. #{PokemonInfo::Pokemon.all[current_num - 1].name}"
+      current_num += 1
+    end
     self.search_name
   end
 
@@ -97,6 +102,14 @@ class PokemonInfo::CLI
       self.print_data(pokemon)
     else
       puts "Couldn't find #{name}, make sure your spelling is right."
+    end
+  end
+
+  def pull_info_by_number(dex_num)
+    if dex_num > 0 && dex_num <= 890
+      pull_info_by_name(PokemonInfo::Pokemon.all[dex_num - 1].name)
+    else
+      puts "Invalid National Dex Number, valid numbers are 1-890"
     end
   end
 
