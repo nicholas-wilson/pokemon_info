@@ -1,16 +1,10 @@
 class PokemonInfo::Pokemon
-  attr_accessor :name, :number, :types, :weaknesses, :abilities
+  attr_accessor :name, :number, :types, :info_link_name, :weaknesses, :abilities
   @@all = []
 
   def initialize(name, types)
     @number = @@all.size + 1
-    if @number == 29
-      @name = "nidoran-female"
-    elsif @number == 32
-      @name = "nidoran-male"
-    else
-      @name = name
-    end
+    self.check_edge_cases(name)
     @types = types
 
     @@all << self
@@ -50,24 +44,70 @@ class PokemonInfo::Pokemon
     # uses info link and returns extra info to make Pokemon
     @@all.each do |pokemon|
       if pokemon.number < 810
-        specs_page = Nokogiri::HTML(open("https://www.pokemon.com/us/pokedex/#{pokemon.name.downcase}"))
+        puts "Pokemon: #{pokemon.name}"
+        specs_page = Nokogiri::HTML(open("https://www.pokemon.com/us/pokedex/#{pokemon.info_link_name.downcase}"))
         # adding abilities to pokemon
-        # abilities = specs_page.css("div.pokemon-ability-info.color-bg.color-lightblue.match.active div.pokemon-ability-info-detail.match")
-        # abilities_and_info = []
-        # abilities.each do |ability|
-        #   abilities_and_info << ability.css("h3").text #the name of the ability
-        #   abilities_and_info << ability.css("p").text #description of ability
-        # end
-        # pokemon.abilities = abilities_and_info
+        abilities = specs_page.css("div.pokemon-ability-info.color-bg.color-lightblue.match.active div.pokemon-ability-info-detail.match")
+        abilities_and_info = []
+        abilities.each do |ability|
+          abilities_and_info << ability.css("h3").text #the name of the ability
+          abilities_and_info << ability.css("p").text #description of ability
+        end
+        pokemon.abilities = abilities_and_info
         # adding weaknesses to pokemon
-        # weaknesses_raw = specs_page.css("div.pokedex-pokemon-attributes.active div.dtm-weaknesses ul li")
-        # weaknesses = []
-        # weaknesses_raw.each do |weakness|
-        #   weaknesses << weakness.css("a span").text
-        # end
-        # pokemon.weaknesses = weaknesses
+        weaknesses_raw = specs_page.css("div.pokedex-pokemon-attributes.active div.dtm-weaknesses ul li")
+        weaknesses = []
+        weaknesses_raw.each do |weakness|
+          weaknesses << weakness.css("a span").text
+        end
+        pokemon.weaknesses = weaknesses
       end
     end
-    binding.pry
+  end
+
+  def check_edge_cases(name)
+    if @number == 29
+      @name = "Nidoran-female"
+      @info_link_name = @name
+    elsif @number == 32
+      @name = "Nidoran-male"
+      @info_link_name = @name
+    elsif @number == 83
+      @name = name
+      @info_link_name = "farfetchd"
+    elsif @number == 122
+      @name = name
+      @info_link_name = "mr-mime"
+    elsif @number == 439
+      @name = name
+      @info_link_name = "mime-jr"
+    elsif @number == 669
+      @name = name
+      @info_link_name = "flabebe"
+    elsif @number == 772
+      @name = name
+      @info_link_name = "type-null"
+    elsif @number == 785
+      @name = name
+      @info_link_name = "tapu-koko"
+    elsif @number == 786
+      @name = name
+      @info_link_name = "tapu-lele"
+    elsif @number == 787
+      @name = name
+      @info_link_name = "tapu-bulu"
+    elsif @number == 788
+      @name = name
+      @info_link_name = "tapu-fini"
+    elsif @number == 865
+      @name = name
+      @info_link_name = "sirfetchd"
+    elsif @number == 866
+      @name = name
+      @info_link_name = "mr-rime"
+    else
+      @name = name
+      @info_link_name = name
+    end
   end
 end
