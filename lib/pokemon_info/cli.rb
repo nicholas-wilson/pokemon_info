@@ -63,7 +63,7 @@ class PokemonInfo::CLI
   def search_name
     puts "\nEnter the name of the Pokemon to display info for"
     input = gets.chomp
-    puts "Here's the info!"
+    self.pull_info_by_name(input)
   end
 
   def search_number
@@ -89,5 +89,36 @@ class PokemonInfo::CLI
   def list_gen(start_num, end_num)
     puts "Displaying #{start_num} to #{end_num}!"
     self.search_name
+  end
+
+  def pull_info_by_name(name)
+    pokemon = PokemonInfo::Pokemon.search_by_name(name)
+    if pokemon
+      self.print_data(pokemon)
+    else
+      puts "Couldn't find #{name}, make sure your spelling is right."
+    end
+  end
+
+  def print_data(pokemon)
+    puts "**********************************************************************"
+    puts "Pokemon:"
+    puts "        #{pokemon.name}"
+    puts "Type(s):"
+    pokemon.types.each do |type|
+      puts "        #{type}"
+    end
+    if pokemon.number < 810
+      puts "Weaknesses:"
+      pokemon.weaknesses.each do |weakness|
+        puts "        #{weakness.chomp}"
+      end
+      puts "Abilities:"
+      i = 0
+      while i < pokemon.abilities.length
+        puts "        #{pokemon.abilities[i]}: #{pokemon.abilities[i + 1]}"
+        i += 2
+      end
+    end
   end
 end

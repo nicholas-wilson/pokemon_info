@@ -23,6 +23,11 @@ class PokemonInfo::Pokemon
     PokemonInfo::Pokemon.add_details_to_all_pokemon
   end
 
+  def self.search_by_name(pokemon)
+    self.all.find {|i| i.name.downcase == pokemon.downcase}
+    #=> returns pokemon obj with name of pokemon
+  end
+
   def self.scrape_from_pokemondb
     # uses nokogiri and open-uri to pull
     page = Nokogiri::HTML(open("https://pokemondb.net/pokedex/national"))
