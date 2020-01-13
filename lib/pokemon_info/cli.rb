@@ -21,12 +21,12 @@ class PokemonInfo::CLI
   end
 
   def display_menu
-    puts "\nPlease choose one of the following options or type 'exit' to quit."
-    puts "---------------------------------------------------------------------"
+    puts "\nPlease enter a number (1-3) for one of the following options or type 'exit' to quit."
+    puts "----------------------------------------------------------------------------------------"
     puts "1. List Pokemon by number"
     puts "2. Search by name"
     puts "3. Search by number"
-    puts "---------------------------------------------------------------------"
+    puts "----------------------------------------------------------------------------------------"
   end
 
   def list_by_number
@@ -73,8 +73,8 @@ class PokemonInfo::CLI
   end
 
   def display_gen_listing
-    puts "\nPlease choose which group of Pokemon to be listed or type 'exit' for main menu"
-    puts "---------------------------------------------------------------------"
+    puts "\nPlease enter a number (1-9) to choose which group of Pokemon to be listed or type 'exit' for main menu"
+    puts "----------------------------------------------------------------------------------------------------------"
     puts "1. All of First Gen (1 - 151)"
     puts "2. All of Second Gen (152 - 251)"
     puts "3. All of Third Gen (252 - 386)"

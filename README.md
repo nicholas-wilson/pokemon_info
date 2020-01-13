@@ -22,7 +22,36 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This program is command line interface controlled, meaning that you must follow
+menu prompts and type in and enter commands as requested by the program. This program
+can be used to display the names of all pokemon and can also show each pokemon's types,
+weaknesses, and abilities. The type of information shown for each pokemon will depend
+on if it is included in the newest generation (Pokemon Sword/Shield), as the newest
+pokemon will not show the weaknesses and abilities.
+
+
+Searching for a pokemon's data
+  There are two ways this can be accomplished:
+    1. Searching by name
+      -   To search by name select the main menu option to search by name and then type in
+        the pokemon's name exactly how it would appear in the game.
+        *Note* - for Nidoran please type in nidoran-male or nidoran-female when searching
+    2. Searching by the national dex number
+      -   To search by national dex number simply choose the option to search by number
+        on the main menu and then type in the national dex number of the desired pokemon.
+        acceptable numbers are between 1 and 890.
+
+Listing the pokemon
+  When choosing to list pokemon from the main menu, you will be asked which set of
+  pokemon whose names are to be listed. After choosing which set of pokemon to be
+  listed you will be prompted to enter in the name of a pokemon to display info for.
+  The name of the pokemon does not have to be from the set just listed, and if you
+  don't want to enter a name just enter something to be taken back to a previous menu.
+
+Exiting
+  When done with the program simply enter exit on the main menu to stop the program.
+  If you are not currently on the main menu when typing exit and can't figure out
+  how to navigate back to the main menu you can keep entering 'exit' to do so.
 
 ## Development
 
