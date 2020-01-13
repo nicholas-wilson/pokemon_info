@@ -99,6 +99,7 @@ class PokemonInfo::CLI
   def pull_info_by_name(name)
     pokemon = PokemonInfo::Pokemon.search_by_name(name)
     if pokemon
+      PokemonInfo::Pokemon.add_details_to(pokemon)
       self.print_data(pokemon)
     else
       puts "Couldn't find #{name}, make sure your spelling is right."
