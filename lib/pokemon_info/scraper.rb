@@ -17,7 +17,7 @@ class PokemonInfo::Scraper
   end
 
   def self.add_details_to(pokemon)
-    if pokemon.number < 810
+    if pokemon.number <= 890
       specs_page = Nokogiri::HTML(open("https://www.pokemon.com/us/pokedex/#{pokemon.info_link_name.downcase}"))
       # adding abilities to pokemon
       abilities = specs_page.css("div.pokemon-ability-info.color-bg.color-lightblue.match.active div.pokemon-ability-info-detail.match")

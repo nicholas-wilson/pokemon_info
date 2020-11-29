@@ -82,7 +82,7 @@ class PokemonInfo::CLI
     puts "5. All of Fifth Gen (494 - 649)"
     puts "6. All of Sixth Gen (650 - 721)"
     puts "7. All of Seventh Gen (722 - 809)"
-    puts "8. All of Eighth Gen (810 - 890) *doesn't include weaknesses or abilities yet"
+    puts "8. All of Eighth Gen (810 - 890)"
     puts "9. All Pokemon (not recommended as it is a lot of text)"
   end
 
@@ -122,7 +122,7 @@ class PokemonInfo::CLI
     pokemon.types.each do |type|
       puts "        #{type}"
     end
-    if pokemon.number < 810
+    if pokemon.number <= 890
       puts "Weaknesses:"
       pokemon.weaknesses.each do |weakness|
         puts "        #{weakness.chomp}"
